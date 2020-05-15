@@ -160,3 +160,52 @@ function arrayToList(array){
   // → 20
   console.log(nth(arrayToList([10, 20, 30]), 2));
   console.log(nth(arrayToList([10, 20, 30]), 3));
+// Your code here.
+function deepEqual(value1, value2){
+  // Value + Value -> Boolean
+  // Takes 2 values, returns true if they are the same value
+  // or are objects with the same properties, where the values of the properties
+  // are equal
+  if (typeof value1 == "object" & typeof value2 == "object"){
+    // both objects
+    //console.log("both objs")
+    if (value1 == null || value2 == null){
+      console.log("either one is null")
+      return false
+    }
+    let value1keys = Object.keys(value1)
+    let value2keys = Object.keys(value2)
+    if (value1keys.length != value2keys.length){
+      return false
+    }
+    else {
+      for (let i = 0; i <= value1keys.length; i++){
+        if (deepEqual(value1[i], value2[i] == false)){
+            return false
+            }
+      }
+    }
+
+
+    for (let key of value1keys){
+      //
+      // console.log(value1[key])
+      return deepEqual(value1[key], value2[key])
+
+    }
+
+  }
+  else {
+    // if either one isn't an object
+    return value1 === value2
+  }
+}
+
+let obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
+console.log(deepEqual(1, 1));
