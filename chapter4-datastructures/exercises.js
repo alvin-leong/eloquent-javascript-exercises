@@ -180,7 +180,7 @@ function deepEqual(value1, value2){
     }
     else {
       for (let i = 0; i <= value1keys.length; i++){
-        if (deepEqual(value1[i], value2[i] == false)){
+        if (deepEqual(value1[i], value2[i]) == false){
             return false
             }
       }
