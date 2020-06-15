@@ -41,7 +41,7 @@ function every1(array, test) {
     // Returns true if test function returns true for EVERY element in array
     // returns false if a single one is false
     
-    return !array.some(element => !test(element))
+    return array.some(element => !test(element))
   
   
   }
