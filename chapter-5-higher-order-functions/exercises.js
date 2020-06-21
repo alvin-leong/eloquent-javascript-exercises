@@ -52,3 +52,50 @@ function every1(array, test) {
   // → false
   console.log(every([], n => n < 10));
   // → true
+
+  unction countBy(items, groupName) {
+    let counts = [];
+    for (let item of items) {
+      let name = groupName(item);
+      let known = counts.findIndex(c => c.name == name);
+      if (known == -1) {
+        counts.push({name, count: 1});
+      } else {
+        counts[known].count++;
+      }
+    }
+    return counts;
+  }
+  
+  function textScriptsList(text) {
+    // Text -> String
+    // takes in a text and outputs the name of the script with most chars
+    let scripts = countBy(text, char => {
+      let script = characterScript(char.codePointAt(0));
+      return script ? script.name : "none";
+    }).filter(({name}) => name != "none");
+    let sortedScripts = scripts.sort((a, b) => (a.count < b.count) ? 1 : -1);
+    return sortedScripts[0].name
+  
+  }
+  
+  console.log(textScriptsList('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
+  
+  function dominantDirection(text) {
+    // Your code here.
+    // Text -> direction property
+    // Takes in a text, finds the majority of chars in that text snippet, 
+    // returns the direction
+    let topScript = textScriptsList(text)
+    let scriptObject = SCRIPTS.filter(script => script.name == topScript) 
+    
+    return scriptObject.map(s => s.direction)[0]
+  }
+  
+  console.log(dominantDirection("Hello!"));
+  // → ltr
+  console.log(dominantDirection("Hey, مساء الخير"));
+  // → rtl
+  
+  console.log(("Hey, مساء الخير")[6].codePointAt())
+  //codePointAt(خ)
