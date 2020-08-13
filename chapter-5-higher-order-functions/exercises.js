@@ -53,7 +53,7 @@ function every1(array, test) {
   console.log(every([], n => n < 10));
   // → true
 
-  unction countBy(items, groupName) {
+  function countBy(items, groupName) {
     let counts = [];
     for (let item of items) {
       let name = groupName(item);
